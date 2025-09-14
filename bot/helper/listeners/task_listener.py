@@ -478,7 +478,7 @@ class TaskListener(TaskConfig):
             await self.message._client.send_sticker(
                 self.message.chat.id,
                 "CAACAgIAAxkBAAEPX0ZoxsMuDlfSWesxGqfvGMb5khIt0gACJUkAArw3YUmtylzqifhguTYE",
-                reply_to_message_id=getattr(self.message, 'id', None),
+                reply_to_message_id=getattr(self.message, "id", None),
             )
             await send_message(self.message, done_msg)
         elif upload_service == "yt":
