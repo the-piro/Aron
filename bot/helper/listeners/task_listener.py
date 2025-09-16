@@ -474,9 +474,7 @@ class TaskListener(TaskConfig):
                             int(Config.LOG_CHAT_ID),
                             f"{msg}<blockquote expandable>{fmsg}</blockquote>",
                         )
-                await self.message.reply_sticker(
-                    "CAACAgIAAxkBAAEPX0ZoxsMuDlfSWesxGqfvGMb5khIt0gACJUkAArw3YUmtylzqifhguTYE"
-                )
+                await self.message._client.send_sticker(self.message.chat.id, "CAACAgIAAxkBAAEPX0ZoxsMuDlfSWesxGqfvGMb5khIt0gACJUkAArw3YUmtylzqifhguTYE")
                 await send_message(self.message, done_msg)
         elif upload_service == "yt":
             playlist_url = (
@@ -594,9 +592,7 @@ class TaskListener(TaskConfig):
                 await send_message(self.user_id, error_message)
                 if Config.LOG_CHAT_ID:
                     await send_message(int(Config.LOG_CHAT_ID), error_message)
-            await self.message.reply_sticker(
-                "CAACAgIAAxkBAAEPX0ZoxsMuDlfSWesxGqfvGMb5khIt0gACJUkAArw3YUmtylzqifhguTYE"
-            )
+            await self.message._client.send_sticker(self.message.chat.id, "CAACAgIAAxkBAAEPX0ZoxsMuDlfSWesxGqfvGMb5khIt0gACJUkAArw3YUmtylzqifhguTYE")
             await send_message(
                 self.message,
                 f"{self.tag}\nYour YouTube upload is complete!",
