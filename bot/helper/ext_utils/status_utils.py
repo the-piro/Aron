@@ -216,7 +216,7 @@ async def get_readable_message(sid, is_user, page_no=1, status="All", page_step=
             msg += f"<b>{index + start_position}. <a href='{task.listener.message.link}'>{tstatus}</a>: </b>"
         else:
             msg += f"<b>{index + start_position}. {tstatus}: </b>"
-        msg += f"<code>{escape(f'{task.name()}')}</code>"
+        msg += f"<blockquote>{escape(f'{task.name()}')}</blockquote>"
         if task.listener.subname:
             msg += f"\n<i>{task.listener.subname}</i>"
         msg += f"\nby: {source(task.listener)}"
