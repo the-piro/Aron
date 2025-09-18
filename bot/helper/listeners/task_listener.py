@@ -56,6 +56,8 @@ from bot.helper.telegram_helper.message_utils import (
     update_status_message,
 )
 
+ch_url = "https://t.me/NxMirror"
+
 
 class TaskListener(TaskConfig):
     def __init__(self):
@@ -430,6 +432,7 @@ class TaskListener(TaskConfig):
             await database.rm_complete_task(self.message.link)
         msg = f"<b>Name: </b><code>{escape(self.name)}</code>\n\n<b>Size: </b>{get_readable_file_size(self.size)}"
         done_msg = f"{self.tag}\nYour task is complete\nPlease check your inbox.\n\n<b>Name: </b><blockquote>{escape(self.name)}</blockquote>\n\n<b>Size: </b>{get_readable_file_size(self.size)}"
+        buttons.url_button("Join", ch_url)
         LOGGER.info(f"Task Done: {self.name}")
 
         upload_service = (
