@@ -56,6 +56,8 @@ from bot.helper.telegram_helper.message_utils import (
     update_status_message,
 )
 
+ch_url = "https://t.me/NxMirror"
+
 
 class TaskListener(TaskConfig):
     def __init__(self):
@@ -430,6 +432,9 @@ class TaskListener(TaskConfig):
             await database.rm_complete_task(self.message.link)
         msg = f"<b>Name: </b><code>{escape(self.name)}</code>\n\n<b>Size: </b>{get_readable_file_size(self.size)}"
         done_msg = f"{self.tag}\nYour task is complete\nPlease check your inbox.\n\n<b>Name: </b><blockquote>{escape(self.name)}</blockquote>\n\n<b>Size: </b>{get_readable_file_size(self.size)}"
+        buttons = ButtonMaker()
+        buttons.url_button("Join🫰", ch_url)
+        button = buttons.build_menu(1)
         LOGGER.info(f"Task Done: {self.name}")
 
         upload_service = (
@@ -478,7 +483,7 @@ class TaskListener(TaskConfig):
                     self.message.chat.id,
                     "CAACAgIAAxkBAAEPX0ZoxsMuDlfSWesxGqfvGMb5khIt0gACJUkAArw3YUmtylzqifhguTYE",
                 )
-                await send_message(self.message, done_msg)
+                await send_message(self.message, done_msg, buttons=button)
         elif upload_service == "yt":
             playlist_url = (
                 upload_result.get("playlist_url")
@@ -678,8 +683,16 @@ class TaskListener(TaskConfig):
                 del task_dict[self.mid]
             count = len(task_dict)
         await self.remove_from_same_dir()
-        msg = f"{self.tag} Download: {escape(str(error))}"
-        x = await send_message(self.message, msg, button)
+        await self.message._client.send_sticker(
+            self.message.chat.id,
+            "CAACAgIAAxkBAAEPXc5oxbIjHClLKXF3ZCj21wGw3anlEQACNQwAAp1asUlhZqU29xC_PzYE",
+        )
+        await sleep(1)
+        error_image_url = "https://telegra.ph/Extractor-Bot-09-18-2"
+        caption = f"{self.tag} Download: {escape(str(error))}"
+        x = await send_message(
+            self.message, text=caption, photo=error_image_url, buttons=button
+        )
         create_task(auto_delete_message(x, time=300))
         if count == 0:
             await self.clean()
@@ -718,7 +731,16 @@ class TaskListener(TaskConfig):
             if self.mid in task_dict:
                 del task_dict[self.mid]
             count = len(task_dict)
-        x = await send_message(self.message, f"{self.tag} {escape(str(error))}")
+        await self.message._client.send_sticker(
+            self.message.chat.id,
+            "CAACAgIAAxkBAAEPXc5oxbIjHClLKXF3ZCj21wGw3anlEQACNQwAAp1asUlhZqU29xC_PzYE",
+        )
+        await sleep(1)
+        error_image_url = "https://telegra.ph/Extractor-Bot-09-18-2"
+        caption = f"{self.tag} {escape(str(error))}"
+        x = await send_message(self.message, text=caption, photo=error_image_url)
+
+        # x = await send_message(self.message, f"{self.tag} {escape(str(error))}")
         create_task(auto_delete_message(x, time=300))
         if count == 0:
             await self.clean()
