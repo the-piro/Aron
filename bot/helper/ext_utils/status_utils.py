@@ -184,6 +184,7 @@ def source(self):
         else self.message.from_user.username or self.message.from_user.id
     )
 
+
 async def get_readable_message(sid, is_user, page_no=1, status="All", page_step=1):
     msg = ""
     button = None
@@ -202,7 +203,7 @@ async def get_readable_message(sid, is_user, page_no=1, status="All", page_step=
     start_position = (page_no - 1) * STATUS_LIMIT
 
     for index, task in enumerate(
-        tasks[start_position: STATUS_LIMIT + start_position],
+        tasks[start_position : STATUS_LIMIT + start_position],
         start=1,
     ):
         if status != "All":
