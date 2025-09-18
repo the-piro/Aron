@@ -435,7 +435,6 @@ class TaskListener(TaskConfig):
         buttons = ButtonMaker()
         buttons.url_button("Join", ch_url)
         button = buttons.build_menu(1)
-        await self.message.edit_text(done_msg, reply_markup=button)
         LOGGER.info(f"Task Done: {self.name}")
 
         upload_service = (
