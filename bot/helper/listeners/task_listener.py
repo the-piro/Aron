@@ -731,12 +731,15 @@ class TaskListener(TaskConfig):
             if self.mid in task_dict:
                 del task_dict[self.mid]
             count = len(task_dict)
-        x_sticker = await self.message._client.send_sticker(self.message.chat.id, "CAACAgIAAxkBAAEPXc5oxbIjHClLKXF3ZCj21wGw3anlEQACNQwAAp1asUlhZqU29xC_PzYE")
+        await self.message._client.send_sticker(
+            self.message.chat.id,
+            "CAACAgIAAxkBAAEPXc5oxbIjHClLKXF3ZCj21wGw3anlEQACNQwAAp1asUlhZqU29xC_PzYE",
+        )
         await sleep(1)
         error_image_url = "https://telegra.ph/Extractor-Bot-09-18-2"
         caption = f"{self.tag} {escape(str(error))}"
         x = await send_message(self.message, text=caption, photo=error_image_url)
-        
+
         # x = await send_message(self.message, f"{self.tag} {escape(str(error))}")
         create_task(auto_delete_message(x, time=300))
         if count == 0:
