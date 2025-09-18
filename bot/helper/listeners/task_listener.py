@@ -723,7 +723,7 @@ class TaskListener(TaskConfig):
             if self.mid in task_dict:
                 del task_dict[self.mid]
             count = len(task_dict)
-        error_image_url = "https://telegra.ph/Extractor-Bot-09-18"
+        error_image_url = "https://telegra.ph/Extractor-Bot-09-18-2"
         caption = f"{self.tag} {escape(str(error))}"
         x = await send_message(self.message, text=caption, photo=error_image_url)
         # x = await send_message(self.message, f"{self.tag} {escape(str(error))}")
