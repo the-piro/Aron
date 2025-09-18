@@ -432,7 +432,10 @@ class TaskListener(TaskConfig):
             await database.rm_complete_task(self.message.link)
         msg = f"<b>Name: </b><code>{escape(self.name)}</code>\n\n<b>Size: </b>{get_readable_file_size(self.size)}"
         done_msg = f"{self.tag}\nYour task is complete\nPlease check your inbox.\n\n<b>Name: </b><blockquote>{escape(self.name)}</blockquote>\n\n<b>Size: </b>{get_readable_file_size(self.size)}"
+        buttons = ButtonMaker()
         buttons.url_button("Join", ch_url)
+        button = buttons.build_menu(1)
+        await self.message.reply(done_msg, reply_markup=button)
         LOGGER.info(f"Task Done: {self.name}")
 
         upload_service = (
