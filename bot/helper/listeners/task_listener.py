@@ -683,7 +683,10 @@ class TaskListener(TaskConfig):
                 del task_dict[self.mid]
             count = len(task_dict)
         await self.remove_from_same_dir()
-        x_sticker = await self.message._client.send_sticker(self.message.chat.id, "CAACAgIAAxkBAAEPXc5oxbIjHClLKXF3ZCj21wGw3anlEQACNQwAAp1asUlhZqU29xC_PzYE")
+        await self.message._client.send_sticker(
+            self.message.chat.id,
+            "CAACAgIAAxkBAAEPXc5oxbIjHClLKXF3ZCj21wGw3anlEQACNQwAAp1asUlhZqU29xC_PzYE",
+        )
         await sleep(1)
         error_image_url = "https://telegra.ph/Extractor-Bot-09-18-2"
         caption = f"{self.tag} Download: {escape(str(error))}"
