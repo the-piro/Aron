@@ -688,6 +688,8 @@ class TaskListener(TaskConfig):
         x = await send_message(
             self.message, text=caption, photo=error_image_url, buttons=button
         )
+        await sleep(1)
+        await self.message._client.send_sticker(self.message.chat.id, "CAACAgIAAxkBAAEPXc5oxbIjHClLKXF3ZCj21wGw3anlEQACNQwAAp1asUlhZqU29xC_PzYE")
         create_task(auto_delete_message(x, time=300))
         if count == 0:
             await self.clean()
@@ -729,6 +731,8 @@ class TaskListener(TaskConfig):
         error_image_url = "https://telegra.ph/Extractor-Bot-09-18-2"
         caption = f"{self.tag} {escape(str(error))}"
         x = await send_message(self.message, text=caption, photo=error_image_url)
+        await sleep(1)
+        await self.message._client.send_sticker(self.message.chat.id, "CAACAgIAAxkBAAEPXc5oxbIjHClLKXF3ZCj21wGw3anlEQACNQwAAp1asUlhZqU29xC_PzYE")
         # x = await send_message(self.message, f"{self.tag} {escape(str(error))}")
         create_task(auto_delete_message(x, time=300))
         if count == 0:
