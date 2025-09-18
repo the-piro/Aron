@@ -295,7 +295,7 @@ async def update_status_message(sid, force=False):
                 obj.cancel()
                 del intervals["status"][sid]
             return
-        if not force and time() - status_dict[sid]["time"] < 3:
+        if not force and time() - status_dict[sid]["time"] < 10:
             return
         status_dict[sid]["time"] = time()
         page_no = status_dict[sid]["page_no"]
