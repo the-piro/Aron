@@ -683,8 +683,9 @@ class TaskListener(TaskConfig):
                 del task_dict[self.mid]
             count = len(task_dict)
         await self.remove_from_same_dir()
-        msg = f"{self.tag} Download: {escape(str(error))}"
-        x = await send_message(self.message, msg, button)
+        error_image_url = "https://telegra.ph/Extractor-Bot-09-18-2"
+        caption = f"{self.tag} Download: {escape(str(error))}"
+        x = await send_message(self.message, text=caption, photo=error_image_url, buttons=button)
         create_task(auto_delete_message(x, time=300))
         if count == 0:
             await self.clean()
