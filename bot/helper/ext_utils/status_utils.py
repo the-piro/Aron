@@ -191,7 +191,7 @@ async def get_readable_message(sid, is_user, page_no=1, status="All", page_step=
 
     tasks = await get_specific_tasks(status, sid if is_user else None)
 
-    STATUS_LIMIT = 4
+    STATUS_LIMIT = 7
     tasks_no = len(tasks)
     pages = (max(tasks_no, 1) + STATUS_LIMIT - 1) // STATUS_LIMIT
     if page_no > pages:
