@@ -93,6 +93,7 @@ async def re_verify(paused, resumed, hash_id):
     LOGGER.info(f"Verified! Hash: {hash_id}")
     return True
 
+
 @app.get("/app/files", response_class=HTMLResponse)
 async def files(request: Request):
     return templates.TemplateResponse("page.html", {"request": request})
