@@ -98,6 +98,7 @@ async def re_verify(paused, resumed, hash_id):
 async def files(request: Request):
     return templates.TemplateResponse(request, "page.html")
 
+
 @app.api_route(
     "/app/files/torrent",
     methods=["GET", "POST"],
